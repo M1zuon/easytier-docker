@@ -6,7 +6,7 @@
 
 [EasyTier](https://github.com/EasyTier/EasyTier) 发布新版本时，自动构建并发布 Docker 镜像
 
-## Docker Compose 使用方法
+## Docker Compose
 
 ### 完整版 ( Core 组网 + Web 控制台 )
 
