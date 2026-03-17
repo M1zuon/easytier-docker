@@ -8,7 +8,7 @@
 
 ## Docker Compose 使用方法
 
-### 完整版 ( Core组网 + Web控制台 )
+### 完整版 ( Core 组网 + Web 控制台 )
 
 <!-- BEGIN_COMPOSE_CORE -->
 ```yaml
@@ -70,7 +70,7 @@ services:
 ```
 <!-- END_COMPOSE_CORE -->
 
-### 仅Web版 ( Web控制台 )
+### 仅 Web 版 ( Web 控制台 )
 
 <!-- BEGIN_COMPOSE_WEB -->
 ```yaml
