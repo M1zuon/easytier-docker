@@ -6,7 +6,7 @@
 
 [EasyTier](https://github.com/EasyTier/EasyTier) 发布新版本时，自动构建并发布 Docker 镜像
 
-## Docker Compose
+## Compose
 
 ### 完整版 ( Core 组网 + Web 控制台 )
 
@@ -26,7 +26,7 @@ services:
     environment:
       # 时区
       - TZ=Asia/Shanghai
-      # 远程 Web 服务 URL, 直接连接远程控制台
+      # 远程 Web 服务 URL, 直接远程连接其他端的 Web 控制台
       # 设置后会忽略 WEB_USERNAME, 不可同时连接多个 Web, 但仍可启用本地控制台
       # 示例: udp://api.web.com:22020/username
       # 默认: 无
@@ -65,7 +65,7 @@ services:
     volumes:
       - ./data:/app/data
     # 如果启用了 Web 且设置了用户名, 不用设置 command, 直接用 Web 控制台管理
-    # command 为 easytier-core 命令的参数
+    # command 为 easytier-core 命令的附加参数
     # command: -i 10.126.126.1 --network-name my-network --network-secret my-secret -p 节点服务器
 ```
 <!-- END_COMPOSE_CORE -->
