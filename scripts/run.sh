@@ -23,10 +23,11 @@ WEB_USERNAME=${WEB_USERNAME:-}
 WEB_PORT=${WEB_PORT:-11211}
 WEB_SERVER_PORT=${WEB_SERVER_PORT:-22020}
 WEB_SERVER_PROTOCOL=${WEB_SERVER_PROTOCOL:-udp}
-WEB_DEFAULT_API_HOST=${WEB_DEFAULT_API_HOST:-http://127.0.0.1:$WEB_API_PORT}
+WEB_DEFAULT_API_HOST=${WEB_DEFAULT_API_HOST:-http://127.0.0.1:$WEB_PORT}
 WEB_LOG_LEVEL=${WEB_LOG_LEVEL:-warn}
 WEB_DATA_DIR=/app/data/web
 WEB_LOG_DIR=$WEB_DATA_DIR/logs
+WEB_GEOIP_DIR=${WEB_GEOIP_DIR:-}
 CONFIG_DIR=/app/data/config
 
 
@@ -60,7 +61,7 @@ if [ "$WEB_ENABLE" = "true" ]; then
     API_URL="$WEB_DEFAULT_API_HOST"
   else
     # Assume it's just an IP/Host, append port and scheme
-    API_URL="http://$WEB_DEFAULT_API_HOST:$WEB_API_PORT"
+    API_URL="http://$WEB_DEFAULT_API_HOST:$WEB_PORT"
   fi
   
   log "[Web] Using API URL: $API_URL"
@@ -73,8 +74,15 @@ if [ "$WEB_ENABLE" = "true" ]; then
     -p "$WEB_SERVER_PROTOCOL"
     -a "$WEB_PORT"
     --api-host "$API_URL"
-    --disable-registration "$WEB_DISABLE_REGISTRATION"
   )
+
+  if [ -n "$WEB_GEOIP_DIR" ]; then
+    WEB_ARGS+=("--geoip-db" "$WEB_GEOIP_DIR")
+  fi
+  
+  if [ "$WEB_DISABLE_REGISTRATION" = "true" ]; then
+    WEB_ARGS+=(--disable-registration)
+  fi
 
   log "[Web] Executing command: $(format_cmd "$BINARY" "${WEB_ARGS[@]}")"
 
@@ -88,16 +96,16 @@ log "[Core] Starting easytier-core..."
 
 ARGS=()
 
-if [ "$WEB_ENABLE" = "true" ]; then
+if [ "$WEB_ENABLE" = "true" ] || [ -n "$WEB_REMOTE_API" ]; then
   ARGS+=("--config-dir" "$CONFIG_DIR")
-  
-  if [ -n "$WEB_REMOTE_API" ]; then
-      # If WEB_REMOTE_API is set, use it directly
-      ARGS+=("-w" "$WEB_REMOTE_API")
-  elif [ -n "$WEB_USERNAME" ]; then
-      # Otherwise, use WEB_USERNAME if set
-      ARGS+=("-w" "$WEB_SERVER_PROTOCOL://127.0.0.1:$WEB_SERVER_PORT/$WEB_USERNAME")
-  fi
+fi
+
+if [ -n "$WEB_REMOTE_API" ]; then
+  # If WEB_REMOTE_API is set, use it directly
+  ARGS+=("-w" "$WEB_REMOTE_API")
+elif [ "$WEB_ENABLE" = "true" ] && [ -n "$WEB_USERNAME" ]; then
+  # Otherwise, use WEB_USERNAME if set
+  ARGS+=("-w" "$WEB_SERVER_PROTOCOL://127.0.0.1:$WEB_SERVER_PORT/$WEB_USERNAME")
 fi
 
 # Add machine ID if WEB_ENABLE is true or WEB_REMOTE_API is set

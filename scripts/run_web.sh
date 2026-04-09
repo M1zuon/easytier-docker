@@ -20,7 +20,7 @@ WEB_DISABLE_REGISTRATION=${WEB_DISABLE_REGISTRATION:-false}
 WEB_PORT=${WEB_PORT:-11211}
 WEB_SERVER_PORT=${WEB_SERVER_PORT:-22020}
 WEB_SERVER_PROTOCOL=${WEB_SERVER_PROTOCOL:-udp}
-WEB_DEFAULT_API_HOST=${WEB_DEFAULT_API_HOST:-http://127.0.0.1:$WEB_API_PORT}
+WEB_DEFAULT_API_HOST=${WEB_DEFAULT_API_HOST:-http://127.0.0.1:$WEB_PORT}
 WEB_LOG_LEVEL=${WEB_LOG_LEVEL:-warn}
 WEB_DATA_DIR=/app/data/web
 WEB_LOG_DIR=$WEB_DATA_DIR/logs
@@ -64,7 +64,7 @@ if [[ "$WEB_DEFAULT_API_HOST" == http* ]]; then
   API_URL="$WEB_DEFAULT_API_HOST"
 else
   # Assume it's just an IP/Host, append port and scheme
-  API_URL="http://$WEB_DEFAULT_API_HOST:$WEB_API_PORT"
+  API_URL="http://$WEB_DEFAULT_API_HOST:$WEB_PORT"
 fi
 
 log "[Web] Using API URL: $API_URL"
@@ -78,8 +78,15 @@ WEB_ARGS=(
   -p "$WEB_SERVER_PROTOCOL"
   -a "$WEB_PORT"
   --api-host "$API_URL"
-  --disable-registration "$WEB_DISABLE_REGISTRATION"
 )
+
+if [ -n "$WEB_GEOIP_DIR" ]; then
+  WEB_ARGS+=("--geoip-db" "$WEB_GEOIP_DIR")
+fi
+
+if [ "$WEB_DISABLE_REGISTRATION" = "true" ]; then
+  WEB_ARGS+=(--disable-registration)
+fi
 
 if [ ${#WEB_EXTRA_ARGS[@]} -gt 0 ]; then
   WEB_ARGS+=("${WEB_EXTRA_ARGS[@]}")
