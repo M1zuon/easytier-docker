@@ -16,8 +16,8 @@ services:
       - TZ=Asia/Shanghai
       # -------------------------------------------
       # 是否禁止注册新用户 (默认用户: admin, 密码: admin)
-      # 默认: false
-      - WEB_DISABLE_REGISTRATION=false
+      # 默认: true
+      - WEB_DISABLE_REGISTRATION=true
       # -------------------------------------------
       # 主机物理IP地址 (公网 / 内网)
       # 默认: http://127.0.0.1:11211

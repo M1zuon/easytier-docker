@@ -33,12 +33,12 @@ services:
       # - WEB_REMOTE_API=协议://主机:端口/用户名
       # -------------------------------------------
       # 是否启用 Web 管理界面 
-      # 默认: false
-      - WEB_ENABLE=false
-      # -------------------------------------------
-      # 是否禁止注册新用户 (内置用户: admin, 密码: admin, 登录后右上角可修改密码)
       # 默认: true
-      - WEB_DISABLE_REGISTRATION=true
+      - WEB_ENABLE=true
+      # -------------------------------------------
+      # 是否禁止注册新用户
+      # 默认: false
+      - WEB_DISABLE_REGISTRATION=false
       # -------------------------------------------
       # Web 管理用户名; 设置 WEB_REMOTE_API 时此项无效
       # 启用 Web 且提供用户名时将自动连接本地控制台
@@ -97,8 +97,8 @@ services:
       - TZ=Asia/Shanghai
       # -------------------------------------------
       # 是否禁止注册新用户 (默认用户: admin, 密码: admin)
-      # 默认: false
-      - WEB_DISABLE_REGISTRATION=false
+      # 默认: true
+      - WEB_DISABLE_REGISTRATION=true
       # -------------------------------------------
       # 主机物理IP地址 (公网 / 内网)
       # 默认: http://127.0.0.1:11211
