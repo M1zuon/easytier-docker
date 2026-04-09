@@ -1,8 +1,8 @@
 # EasyTier Docker
 
-[![Release](https://github.com/MajoSissi/easytier-docker/actions/workflows/release.yml/badge.svg)](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-release.yml)
-[![Pre-release](https://github.com/MajoSissi/easytier-docker/actions/workflows/pre.yml/badge.svg)](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-pre.yml)
-[![CI](https://github.com/MajoSissi/easytier-docker/actions/workflows/ci.yml/badge.svg)](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-ci.yml)
+[![Release](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-release.yml/badge.svg)](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-release.yml)
+[![Pre-release](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-pre.yml/badge.svg)](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-pre.yml)
+[![CI](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-ci.yml/badge.svg)](https://github.com/MajoSissi/easytier-docker/actions/workflows/build-ci.yml)
 
 [EasyTier](https://github.com/EasyTier/EasyTier) 发布新版本时，自动构建并发布 Docker 镜像
 
