@@ -75,8 +75,8 @@ WEB_ARGS=(
   --file-log-level "$WEB_LOG_LEVEL"
   --file-log-dir "$WEB_LOG_DIR"
   -c "$WEB_SERVER_PORT"
-  -p "$WEB_SERVER_PROTOCOL"
   -a "$WEB_PORT"
+  -p "$WEB_SERVER_PROTOCOL"
   --api-host "$API_URL"
 )
 
