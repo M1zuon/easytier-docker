@@ -75,11 +75,14 @@ WEB_ARGS=(
   --file-log-level "$WEB_LOG_LEVEL"
   --file-log-dir "$WEB_LOG_DIR"
   -c "$WEB_SERVER_PORT"
-  -p "$WEB_SERVER_PROTOCOL"
   -a "$WEB_PORT"
+  -p "$WEB_SERVER_PROTOCOL"
   --api-host "$API_URL"
-  --disable-registration "$WEB_DISABLE_REGISTRATION"
 )
+
+if [ "$WEB_DISABLE_REGISTRATION" = "true" ]; then
+  WEB_ARGS+=(--disable-registration)
+fi
 
 if [ ${#WEB_EXTRA_ARGS[@]} -gt 0 ]; then
   WEB_ARGS+=("${WEB_EXTRA_ARGS[@]}")
