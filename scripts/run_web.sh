@@ -22,7 +22,8 @@ WEB_SERVER_PORT=${WEB_SERVER_PORT:-22020}
 WEB_SERVER_PROTOCOL=${WEB_SERVER_PROTOCOL:-udp}
 WEB_DEFAULT_API_HOST=${WEB_DEFAULT_API_HOST:-http://127.0.0.1:$WEB_API_PORT}
 WEB_LOG_LEVEL=${WEB_LOG_LEVEL:-warn}
-WEB_DATA_DIR=/app/data
+WEB_DATA_DIR=/app/data/web
+WEB_LOG_DIR=$WEB_DATA_DIR/logs
 
 # Custom entrypoint command
 CORE_EXTRA_ARGS=()
@@ -36,7 +37,7 @@ if [ "$#" -gt 0 ]; then
 fi
 
 # Ensure web directory exists
-mkdir -p "$WEB_DATA_DIR/logs"
+mkdir -p "$WEB_LOG_DIR"
 
 WEB_EXTRA_ARGS=()
 if [ "$#" -gt 0 ]; then
@@ -72,7 +73,7 @@ WEB_ARGS=(
   -d "$WEB_DATA_DIR/et.db"
   --console-log-level "$WEB_LOG_LEVEL"
   --file-log-level "$WEB_LOG_LEVEL"
-  --file-log-dir "$WEB_DATA_DIR/logs"
+  --file-log-dir "$WEB_LOG_DIR"
   -c "$WEB_SERVER_PORT"
   -p "$WEB_SERVER_PROTOCOL"
   -a "$WEB_PORT"

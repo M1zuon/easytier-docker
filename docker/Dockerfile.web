@@ -15,8 +15,7 @@ RUN apk add --no-cache --virtual .dl-deps curl unzip && \
 
 COPY --chmod=755 scripts/run_web.sh /run.sh
 
-# Create config directory
-RUN mkdir -p /app/data/config
+RUN mkdir -p /app/data/web
 
 VOLUME /app/data
 

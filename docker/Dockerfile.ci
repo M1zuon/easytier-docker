@@ -31,7 +31,6 @@ COPY --from=builder /out/ /usr/local/bin/
 
 COPY --chmod=755 scripts/run.sh /run.sh
 
-# Create config directory and web directory
 RUN mkdir -p /app/data/config /app/data/web
 
 VOLUME /app/data
