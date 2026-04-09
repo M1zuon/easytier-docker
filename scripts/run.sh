@@ -120,6 +120,6 @@ if [ "$WEB_ENABLE" = "true" ] || [ -n "$WEB_REMOTE_API" ]; then
   ARGS+=("--machine-id" "$MACHINE_ID")
 fi
 
-log "[Core] Executing command: $(format_cmd easytier-core "${ARGS[@]}")"
+log "[Core] Executing command: $(format_cmd easytier-core "${ARGS[@]}" "${CORE_EXTRA_ARGS[@]}")"
 
-exec easytier-core "${ARGS[@]}"
+exec easytier-core "${ARGS[@]}" "${CORE_EXTRA_ARGS[@]}"
