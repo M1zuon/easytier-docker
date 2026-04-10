@@ -62,15 +62,14 @@ services:
       # 默认: udp - 可选: [udp | tcp | ws]
       - WEB_SERVER_PROTOCOL=udp
       # -------------------------------------------
-      # Web 服务日志级别 
+      # Web 服务日志级别
       # 默认: warn - 可选: [trace | debug | info | warn | error]
       # 控制 Web console 日志和文件日志级别
       - WEB_LOG_LEVEL=warn
       # -------------------------------------------
-      # Core 服务日志级别 
+      # Core 服务日志级别
       # 默认: warn - 可选: [trace | debug | info | warn | error]
-      - CORE_LOG_LEVEL=warn
-      # -------------------------------------------
+      - CORE_LOG_LEVEL=warn      # -------------------------------------------
       # Core 控制台日志级别 (可选, 默认继承 CORE_LOG_LEVEL)
       # - CORE_CONSOLE_LOG_LEVEL=warn
       # -------------------------------------------
@@ -135,7 +134,7 @@ services:
       # 默认: udp - 可选: [udp | tcp | ws]
       - WEB_SERVER_PROTOCOL=udp
       # -------------------------------------------
-      # Web 服务日志级别 
+      # Web 服务日志级别
       # 默认: warn - 可选: [trace | debug | info | warn | error]
       # 控制 Web console 日志和文件日志级别
       - WEB_LOG_LEVEL=warn
