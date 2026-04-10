@@ -63,8 +63,13 @@ services:
       - WEB_SERVER_PROTOCOL=udp
       # -------------------------------------------
       # Web 服务日志级别 
-      # 默认: warn - 可选: [off | error | warn | info | debug | trace] 
+      # 默认: warn - 可选: [trace | debug | info | warn | error]
+      # 控制 Web console 日志和文件日志级别
       - WEB_LOG_LEVEL=warn
+      # -------------------------------------------
+      # Core 服务日志级别 
+      # 默认: warn - 可选: [trace | debug | info | warn | error]
+      - CORE_LOG_LEVEL=warn
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -116,7 +121,8 @@ services:
       - WEB_SERVER_PROTOCOL=udp
       # -------------------------------------------
       # Web 服务日志级别 
-      # 默认: warn - 可选: [off | error | warn | info | debug | trace] 
+      # 默认: warn - 可选: [trace | debug | info | warn | error]
+      # 控制 Web console 日志和文件日志级别
       - WEB_LOG_LEVEL=warn
     volumes:
       - ./data:/app/data
